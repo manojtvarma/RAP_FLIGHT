@@ -8,7 +8,7 @@
     dataClass: #TRANSACTIONAL
 }
 define view entity ZMV_R_Booking
-  as select from ZMV_I_Booking
+  as select from ZMV_I_Booking as _Booking
   association to parent ZMV_R_Travel    as _Travel on $projection.TravelId = _Travel.TravelId
   composition [1..*] of ZMV_R_BookSuppl as _BookSuppl
 {
@@ -26,5 +26,7 @@ define view entity ZMV_R_Booking
 
       /* Associations */
       _Travel,
-      _BookSuppl
+      _BookSuppl,
+      _Booking._CustomerContactCard as _BookingCustomerContactCard
+
 }

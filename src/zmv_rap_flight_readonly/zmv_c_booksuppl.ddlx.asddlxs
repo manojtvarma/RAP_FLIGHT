@@ -1,0 +1,14 @@
+@Metadata.layer: #CORE
+annotate entity ZMV_C_BookSuppl with
+{
+
+  @UI: { lineItem: [{ position: 10 }] }
+  BookingSupplementId;
+
+  @UI: { lineItem: [{ position: 20 }] }
+  SupplementId;
+
+  @UI: { lineItem: [{ position: 30 }] }
+  Price;
+
+}

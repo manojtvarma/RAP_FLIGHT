@@ -3,10 +3,14 @@
 {
 "FROM":
 [
+"/DMO/I_SUPPLEMENT",
+"/DMO/I_SUPPLEMENTTEXT",
 "/DMO/BOOK_SUPPL"
 ],
 "ASSOCIATED":
-[],
+[
+"/DMO/I_SUPPLEMENT"
+],
 "BASE":
 [],
 "ANNO_REF":

@@ -2,16 +2,25 @@
 @EndUserText.label: 'Consumption View: Travel'
 @Metadata.ignorePropagatedAnnotations: false
 @Metadata.allowExtensions: true
+@Search.searchable: true
 define root view entity ZMV_C_Travel
   provider contract transactional_query
   as projection on ZMV_R_Travel
 {
   key TravelId,
-      @ObjectModel.text.element: [ 'AgencyName' ]
       AgencyId,
+      @Search: { defaultSearchElement: true,
+                 fuzzinessThreshold: 0.7 }
       AgencyName,
-      @ObjectModel.text.element: [ 'CustomerName' ]
       CustomerId,
+      @Search: { defaultSearchElement: true,
+                 fuzzinessThreshold: 0.7 }
+      _CustomerContactCard.FirstName,
+
+      @Search: { defaultSearchElement: true,
+                 fuzzinessThreshold: 0.7 }
+      _CustomerContactCard.LastName,
+
       CustomerName,
       BeginDate,
       EndDate,
@@ -23,14 +32,15 @@ define root view entity ZMV_C_Travel
       CurrencyCode,
 
       Description,
-      @ObjectModel.text.element: [ 'TravelStatusDescription' ]
       Status,
       TravelStatusDescription,
+      TravelStatusCriticality,
       CreatedBy,
       CreatedAt,
       LastChangedBy,
       LastChangedAt,
 
       /* Associations */
-      _Booking : redirected to composition child ZMV_C_Booking
+      _Booking : redirected to composition child ZMV_C_Booking,
+      _CustomerContactCard
 }

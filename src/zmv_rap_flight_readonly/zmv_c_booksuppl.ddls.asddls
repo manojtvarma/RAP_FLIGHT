@@ -1,25 +1,27 @@
 @AbapCatalog.viewEnhancementCategory: [#NONE]
 @AccessControl.authorizationCheck: #NOT_REQUIRED
-@EndUserText.label: 'RAP View: Booking Supplement'
+@EndUserText.label: 'Consumption View: Booking Supplement'
 @Metadata.ignorePropagatedAnnotations: false
 @ObjectModel.usageType:{
     serviceQuality: #A,
-    sizeCategory: #M,
+    sizeCategory: #S,
     dataClass: #TRANSACTIONAL
 }
-define view entity ZMV_R_BookSuppl
-  as select from ZMV_I_BookSuppl
-  association to parent ZMV_R_Booking as _Booking on  $projection.TravelId  = _Booking.TravelId
-                                                  and $projection.BookingId = _Booking.BookingId
+@Metadata.allowExtensions: true
+define view entity ZMV_C_BookSuppl
+  as projection on ZMV_R_BookSuppl
 {
   key TravelId,
   key BookingId,
   key BookingSupplementId,
+
+
       SupplementId,
       SupplementDescription,
+
+      @Semantics.amount.currencyCode: 'CurrencyCode'
       Price,
       CurrencyCode,
-
       /* Associations */
-      _Booking
+      _Booking : redirected to parent ZMV_C_Booking
 }

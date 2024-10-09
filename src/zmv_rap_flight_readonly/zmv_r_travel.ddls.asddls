@@ -18,6 +18,7 @@ define root view entity ZMV_R_Travel
       Description,
       Status,
       TravelStatusDescription,
+      TravelStatusCriticality,
       CreatedBy,
       CreatedAt,
       LastChangedBy,
@@ -26,6 +27,6 @@ define root view entity ZMV_R_Travel
       /* Associations */
       _Booking,
       _TravelStatus,
-      _Customer,
+      _CustomerContactCard,
       _Agency
 }
