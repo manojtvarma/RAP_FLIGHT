@@ -1,0 +1,97 @@
+@Metadata.layer: #CORE
+
+
+@UI.headerInfo: {
+    typeNamePlural: 'Travels',
+    /* ObjectPage */
+    title.value: 'Description',    //Title
+    description.value: 'TravelId'  //SubTitle
+}
+
+annotate entity ZMV_C_Travel with
+{
+
+  @UI.facet: [{
+      id: 'Travel',
+      position: 10 ,
+      label: 'Travel',
+      type: #COLLECTION
+  },
+  {
+      id: 'General',
+      label: 'General',
+      parentId: 'Travel',
+      position: 10,
+      targetQualifier: 'GRP1',
+      type: #FIELDGROUP_REFERENCE
+  },
+  {
+      id: 'AdminInfo',
+      label: 'Admin Info',
+      parentId: 'Travel',
+      position: 20,
+      targetQualifier: 'GRP2',
+      type: #FIELDGROUP_REFERENCE
+  },
+  {
+      id: 'Booking',
+      position: 10 ,
+      label: 'Booking',
+      type: #LINEITEM_REFERENCE,
+      targetElement: '_Booking'
+  }]
+
+  @UI: { lineItem:      [{ position: 10 }] }
+  TravelId;
+
+  @UI: { lineItem:       [{ position: 20 }],
+         fieldGroup:     [{ position: 20, qualifier: 'GRP1' }],
+         selectionField: [{ position: 10 }] }
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZMV_I_AgencyVH', element: 'AgencyID' } }]
+  AgencyId;
+
+  @UI: { lineItem:       [{ position: 30 }],
+         fieldGroup:     [{ position: 30, qualifier: 'GRP1' }],
+         selectionField: [{ position: 20 }] }
+
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZMV_I_CustomerVH', element: 'CustomerID' } }]
+  CustomerId;
+
+  @UI: { lineItem:       [{ position: 40 }],
+         fieldGroup:     [{ position: 40, qualifier: 'GRP1' }],
+         selectionField: [{ position: 30 }],
+         textArrangement: #TEXT_ONLY }
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZMV_I_TravelStatusVH', element: 'Status' } }]
+  Status;
+
+  @UI: { lineItem:       [{ position: 50 }],
+         fieldGroup:     [{ position: 50, qualifier: 'GRP1' }] }
+  BookingFee;
+
+  @UI: { lineItem:       [{ position: 60 }],
+         fieldGroup:     [{ position: 60, qualifier: 'GRP1' }] }
+  TotalPrice;
+
+  @UI: { fieldGroup:     [{ position: 70, qualifier: 'GRP1' }] }
+  BeginDate;
+
+  @UI: { fieldGroup:     [{ position: 80, qualifier: 'GRP1' }] }
+  EndDate;
+
+  //  @UI: { fieldGroup:     [{ position: 90, qualifier: 'GRP1' }] }
+  //  Description;
+
+  /* Admin Data */
+  @UI.fieldGroup: [{ position: 10, qualifier: 'GRP2' }]
+  CreatedBy;
+
+  @UI.fieldGroup: [{ position: 20, qualifier: 'GRP2' }]
+  CreatedAt;
+
+  @UI.fieldGroup: [{ position: 30, qualifier: 'GRP2' }]
+  LastChangedBy;
+
+  @UI.fieldGroup: [{ position: 40, qualifier: 'GRP2' }]
+  LastChangedAt;
+
+}
