@@ -1,0 +1,129 @@
+@Metadata.layer: #CORE
+
+
+@UI.headerInfo: {
+    typeNamePlural: 'Travels',
+    /* ObjectPage */
+    title.value: 'Description',    //Title
+    description.value: 'TravelId'  //SubTitle
+}
+
+annotate entity ZMV_C_Travel_M with
+{
+
+  @UI.facet: [{
+      id: 'Travel',
+      position: 10 ,
+      label: 'Travel',
+      type: #COLLECTION
+  },
+  {
+      id: 'General',
+      label: 'General',
+      parentId: 'Travel',
+      position: 10,
+      targetQualifier: 'GRP1',
+      type: #FIELDGROUP_REFERENCE
+  },
+  {
+      id: 'AdminInfo',
+      label: 'Admin Info',
+      parentId: 'Travel',
+      position: 20,
+      targetQualifier: 'GRP2',
+      type: #FIELDGROUP_REFERENCE
+  },
+  /* Booking */
+   {
+        id: 'Booking',
+        position: 10 ,
+        label: 'Booking',
+        type: #LINEITEM_REFERENCE,
+        targetElement: '_Booking'
+   },
+
+  /*Data Points*/
+  {
+      id:'SnappingHeader1',
+      purpose: #HEADER,
+      type: #DATAPOINT_REFERENCE,
+      targetQualifier: 'TravelStatus',
+      position: 10
+  },
+  {
+      id:'SnappingHeader2',
+      purpose: #HEADER,
+      type: #DATAPOINT_REFERENCE,
+      targetQualifier: 'BookingFee',
+      position: 20
+  },
+  {
+      id:'SnappingHeader3',
+      purpose: #HEADER,
+      type: #DATAPOINT_REFERENCE,
+      targetQualifier: 'TotalPrice',
+      position: 30
+  }]
+
+  @UI: { lineItem:      [{ position: 10 }],
+         fieldGroup:    [{ position: 10, qualifier: 'GRP1' }]}
+  TravelId;
+
+  @UI: { lineItem:       [{ position: 20 }],
+         fieldGroup:     [{ position: 20, qualifier: 'GRP1' }],
+         selectionField: [{ position: 10 }] }
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZMV_I_AgencyVH', element: 'AgencyID' } }]
+  AgencyId;
+
+  @UI: { lineItem:       [{ position: 30, label: 'Customer', type: #AS_CONTACT, value: '_CustomerContactCard' }],
+         fieldGroup:     [{ position: 30, qualifier: 'GRP1', label: 'Customer ID ' }],
+         selectionField: [{ position: 20 }] }
+
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZMV_I_CustomerVH', element: 'CustomerID' } }]
+  CustomerId;
+
+  @UI: { lineItem:       [{ position: 40, criticality: 'TravelStatusCriticality' , criticalityRepresentation: #WITHOUT_ICON }],
+         fieldGroup:     [{ position: 50, qualifier: 'GRP1', criticality: 'TravelStatusCriticality' , criticalityRepresentation: #WITHOUT_ICON }],
+         selectionField: [{ position: 30 }],
+         dataPoint:      {  qualifier: 'TravelStatus' , criticality: 'TravelStatusCriticality' , criticalityRepresentation: #WITHOUT_ICON },
+         textArrangement: #TEXT_ONLY }
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZMV_I_TravelStatusVH', element: 'Status' } }]
+  Status;
+
+  @UI: { lineItem:       [{ position: 50 }],
+         fieldGroup:     [{ position: 50, qualifier: 'GRP1' }],
+         dataPoint:      {  qualifier: 'BookingFee' } }
+  BookingFee;
+
+  @UI: { lineItem:       [{ position: 60 }],
+         fieldGroup:     [{ position: 60, qualifier: 'GRP1' }],
+         dataPoint:      {  qualifier: 'TotalPrice' }}
+  TotalPrice;
+
+  @UI: { fieldGroup:     [{ position: 70, qualifier: 'GRP1' }],
+         selectionField: [{ position: 40  } ]}
+  @Consumption.filter.selectionType: #INTERVAL //enable date picker
+  BeginDate;
+
+  @UI: { fieldGroup:     [{ position: 80, qualifier: 'GRP1' }],
+         selectionField: [{ position: 50 } ]}
+  @Consumption.filter.selectionType: #INTERVAL //enable date picker
+  EndDate;
+
+  @UI: { fieldGroup:     [{ position: 90, qualifier: 'GRP1' }] }
+  Description;
+
+  /* Admin Data */
+  @UI.fieldGroup: [{ position: 10, qualifier: 'GRP2' }]
+  CreatedBy;
+
+  @UI.fieldGroup: [{ position: 20, qualifier: 'GRP2' }]
+  CreatedAt;
+
+  @UI.fieldGroup: [{ position: 30, qualifier: 'GRP2' }]
+  LastChangedBy;
+
+  @UI.fieldGroup: [{ position: 40, qualifier: 'GRP2' }]
+  LastChangedAt;
+
+}

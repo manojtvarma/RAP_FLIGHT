@@ -2,8 +2,8 @@
 @EndUserText.label: 'Consumption View: Booking'
 @Metadata.ignorePropagatedAnnotations: false
 @Metadata.allowExtensions: true
-define view entity ZMV_C_Booking
-  as projection on ZMV_R_Booking
+define view entity ZMV_C_Booking_M
+  as projection on ZMV_R_Booking_M
 {
   key TravelId,
   key BookingId,
@@ -18,7 +18,8 @@ define view entity ZMV_C_Booking
       CurrencyCode,
 
       /* Associations */
-      _BookSuppl : redirected to composition child ZMV_C_BookSuppl,
-      _Travel    : redirected to parent ZMV_C_Travel,
-      _BookingCustomerContactCard
+      _BookSuppl : redirected to composition child ZMV_C_BookSuppl_M,
+      _Carrier,
+      _BookingCustomerContactCard,
+      _Travel    : redirected to parent ZMV_C_Travel_M
 }

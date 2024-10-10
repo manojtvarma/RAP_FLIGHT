@@ -19,7 +19,10 @@ define view entity ZMV_I_BookSuppl
       @ObjectModel.text.element: [ 'SupplementDescription' ]
       supplement_id                      as SupplementId,
       _Supplement._SupplText.Description as SupplementDescription,
+
+      @Semantics.amount.currencyCode: 'CurrencyCode'
       price                              as Price,
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'I_CurrencyStdVH', element: 'Currency' } }]
       currency_code                      as CurrencyCode,
 
       /* Associations */

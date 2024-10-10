@@ -3,9 +3,9 @@
 @Metadata.ignorePropagatedAnnotations: false
 @Metadata.allowExtensions: true
 @Search.searchable: true
-define root view entity ZMV_C_Travel
+define root view entity ZMV_C_Travel_M
   provider contract transactional_query
-  as projection on ZMV_R_Travel
+  as projection on ZMV_R_Travel_M
 {
   key TravelId,
       AgencyId,
@@ -13,6 +13,7 @@ define root view entity ZMV_C_Travel
                  fuzzinessThreshold: 0.7 }
       AgencyName,
       CustomerId,
+      CustomerName,
       @Search: { defaultSearchElement: true,
                  fuzzinessThreshold: 0.7 }
       _CustomerContactCard.FirstName,
@@ -20,8 +21,6 @@ define root view entity ZMV_C_Travel
       @Search: { defaultSearchElement: true,
                  fuzzinessThreshold: 0.7 }
       _CustomerContactCard.LastName,
-
-      CustomerName,
       BeginDate,
       EndDate,
       BookingFee,
@@ -37,6 +36,8 @@ define root view entity ZMV_C_Travel
       LastChangedAt,
 
       /* Associations */
-      _Booking : redirected to composition child ZMV_C_Booking,
-      _CustomerContactCard
+      _Agency,
+      _CustomerContactCard,
+      _Booking : redirected to composition child ZMV_C_Booking_M,
+      _TravelStatus
 }

@@ -24,8 +24,13 @@ define view entity ZMV_I_Travel
 
       begin_date                        as BeginDate,
       end_date                          as EndDate,
+
+      @Semantics.amount.currencyCode: 'CurrencyCode'
       booking_fee                       as BookingFee,
+
+      @Semantics.amount.currencyCode: 'CurrencyCode'
       total_price                       as TotalPrice,
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'I_CurrencyStdVH', element: 'Currency' } }]
       currency_code                     as CurrencyCode,
       description                       as Description,
 

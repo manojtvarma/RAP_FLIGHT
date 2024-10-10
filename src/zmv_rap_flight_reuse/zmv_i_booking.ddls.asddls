@@ -26,7 +26,10 @@ define view entity ZMV_I_Booking
       _Carrier.Name                     as CarrierName,
       connection_id                     as ConnectionId,
       flight_date                       as FlightDate,
+
+      @Semantics.amount.currencyCode: 'CurrencyCode'
       flight_price                      as FlightPrice,
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'I_CurrencyStdVH', element: 'Currency' } }]
       currency_code                     as CurrencyCode,
 
       /* Associations */

@@ -1,0 +1,29 @@
+projection;
+strict ( 2 );
+
+define behavior for ZMV_C_Travel_M alias Travel
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Booking { create; }
+}
+
+define behavior for ZMV_C_Booking_M alias Booking
+{
+  use update;
+  use delete;
+
+  use association _Travel;
+  use association _BookSuppl { create; }
+}
+
+define behavior for ZMV_C_BookSuppl_M alias BookSuppl
+{
+  use update;
+  use delete;
+
+  use association _Travel;
+  use association _Booking;
+}
