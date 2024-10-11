@@ -1,0 +1,14 @@
+@EndUserText.label: 'Service Definition: Travel'
+define service ZMV_Travel_D {
+  expose ZMV_C_Travel_D            as Travel;
+  expose ZMV_C_Booking_D           as Booking;
+  expose ZMV_C_BookSuppl_D         as BookingSupplement;
+  expose ZMV_I_CustomerContactCard as CustomerContactCard;
+  expose ZMV_I_TravelStatusVH      as F4_TravelStatus;
+  expose ZMV_I_CustomerVH          as F4_CustomerId;
+  expose ZMV_I_AgencyVH            as F4_AgencyId;
+  expose ZMV_I_AirlineVH           as F4_AirlineId;
+  expose ZMV_I_FlightVH            as F4_FlightId;
+  expose /DMO/I_Supplement         as F4_Supplement;
+  expose I_CurrencyStdVH           as F4_Currency;
+}

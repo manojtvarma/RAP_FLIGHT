@@ -1,0 +1,5 @@
+CLASS zbp_mv_r_booksuppl_d DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zmv_r_travel_d.
+ENDCLASS.
+
+CLASS zbp_mv_r_booksuppl_d IMPLEMENTATION.
+ENDCLASS.
